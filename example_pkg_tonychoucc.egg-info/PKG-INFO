@@ -1,0 +1,22 @@
+Metadata-Version: 1.1
+Name: example-pkg-tonychoucc
+Version: 0.0.1
+Summary: A small example package
+Home-page: https://github.com/cool21540125/demo_pypi
+Author: Tony Chou
+Author-email: cool21540125@gmail.com
+License: UNKNOWN
+Description: # Test PyPI
+        
+        - https://packaging.python.org/tutorials/packaging-projects/#setup-py
+        - 2019/12/23
+        
+        ```bash
+        pip install --user --upgrade setuptools wheel
+        
+        python setup.py sdist bdist_wheel
+        ```
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
