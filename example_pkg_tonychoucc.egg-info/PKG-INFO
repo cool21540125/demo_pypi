@@ -1,6 +1,6 @@
-Metadata-Version: 1.1
+Metadata-Version: 2.1
 Name: example-pkg-tonychoucc
-Version: 0.0.1
+Version: 0.0.3
 Summary: A small example package
 Home-page: https://github.com/cool21540125/demo_pypi
 Author: Tony Chou
@@ -12,11 +12,39 @@ Description: # Test PyPI
         - 2019/12/23
         
         ```bash
-        pip install --user --upgrade setuptools wheel
+        git push
         
-        python setup.py sdist bdist_wheel
+        ### 打包工具
+        $# pip install --upgrade setuptools wheel twine
+        # 將來這些打包起來的 package 經上傳到 repo 後, 可用 pip install 下載安裝
+        # setuptools, wheel : (打包必備)
+        # twine : 可以用來上傳 distribution packages 到遠端 repo
+        
+        ### 產生 發布版本的套件(distirbution packages)
+        $# python setup.py sdist bdist_wheel
+        # 會把東西丟到 dist/
+        # *.whl    : built distribution (比較新版的 pip 會優先選這個)
+        # *.tar.gz : source archive
+        
+        ### 上傳 distribution archives
+        $# twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+        Uploading distributions to https://test.pypi.org/legacy/
+        Enter your username: tonychoucc
+        Enter your password:
+        Uploading example_pkg_tonychoucc-0.0.1-py3-none-any.whl
+        100%|██████████████████████████| 7.45k/7.45k [00:02<00:00, 3.23kB/s]
+        Uploading example-pkg-tonychoucc-0.0.1.tar.gz
+        100%|██████████████████████████| 6.27k/6.27k [00:01<00:00, 4.50kB/s]
+        
+        View at:
+        https://test.pypi.org/project/example-pkg-tonychoucc/0.0.1/
+        
+        
+        # 把東西打包到 testpypi
         ```
+        
 Platform: UNKNOWN
 Classifier: Programming Language :: Python :: 3
 Classifier: License :: OSI Approved :: MIT License
 Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
