@@ -131,3 +131,28 @@ pypi-server -p 8888 ~/privatepypi/packages
 ### 用戶端
 pip install --extra-index-url http://tonyos7vm:8888 beautifulsoup4
 ```
+
+
+# 加密
+
+- https://pypiserver.readthedocs.io/en/latest/
+- http://linux.vbird.org/linux_server/0360apache.php#www_adv_htaccess
+
+```bash
+$# yum install -y httpd-tools
+
+### 位於欲搭建 pypiserver 的根目錄資料夾內
+$# htpasswd -c .htaccess tonychoucc
+New password:
+Re-type new password:
+# 可在該資料夾內, 建立存取權限(將來透過 web server 近來訪問, 需要作密碼認證)
+
+$# ls -a
+.  ..  .htaccess  packages  venv
+#      ↑↑↑↑↑↑↑↑↑
+
+$# cat .htaccess
+tonychoucc:$apr1$AvezdJP0$e5IKMVTTZUo4SAa.f6gtu1
+
+$# pypi-server -p 7777 -P .htaccess .packages
+```
