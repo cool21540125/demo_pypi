@@ -4,8 +4,6 @@
 - 2019/12/23
 
 ```bash
-git push
-
 ### 打包工具
 $# pip install --upgrade setuptools wheel twine
 # 將來這些打包起來的 package 經上傳到 repo 後, 可用 pip install 下載安裝
@@ -20,6 +18,9 @@ $# python setup.py sdist bdist_wheel
 
 ### 上傳 distribution 最新版本
 $# twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+#                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+# 也可使用自己的倉庫, ex: http://192.168.0.105:8080  (不知為啥的, 上傳超久)
+# 當然... 裡頭的服務要打開
 Uploading distributions to https://test.pypi.org/legacy/
 Enter your username: tonychoucc
 Enter your password:
@@ -130,4 +131,28 @@ pypi-server -p 8888 ~/privatepypi/packages
 ```bash
 ### 用戶端
 pip install --extra-index-url http://tonyos7vm:8888 beautifulsoup4
+```
+
+
+# 加密保護
+
+```bash
+$# yum install -y httpd
+
+$# htpasswd -sc .htpasswd tony
+# 輸入密碼
+
+$# pypi-server -p 8080 -P .htpasswd ./packages/
+# 啟用認證方式, 才可接受上傳下載
+```
+
+
+# pypi-client
+
+```bash
+### Upload
+$# twine upload -r http://192.168.0.105:8080 dist/*
+
+### auth
+$# python setup.py register -r privatepypi
 ```
