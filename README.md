@@ -136,9 +136,13 @@ pip install --extra-index-url http://tonyos7vm:8888 beautifulsoup4
 
 # 加密保護
 
+- https://pypiserver.readthedocs.io/en/latest/
+- http://linux.vbird.org/linux_server/0360apache.php#www_adv_htaccess
+
 ```bash
 $# yum install -y httpd
 
+# 可在該資料夾內, 建立存取權限(將來透過 web server 近來訪問, 需要作密碼認證)
 $# htpasswd -sc .htpasswd tony
 # 輸入密碼
 
